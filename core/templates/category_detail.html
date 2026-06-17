@@ -11,16 +11,16 @@
 
   <nav class="navbar">
     <div class="navbar__inner">
-      <a href="post_list.html" class="navbar__brand">ink<span>.</span></a>
+      <a href="{% url 'home' %}" class="navbar__brand">ink<span>.</span></a>
       <div class="navbar__links">
-        <a href="post_list.html">Home</a>
+        <a href="{% url 'home' %}">Home</a>
         {% comment %} <a href="category_detail.html" class="active">{{ category.name }}</a> {% endcomment %}
-        {% for category in categories %}
-          <a href="category_detail.html">{{ category.name }}</a>
+        {% for item in categories %}
+          <a href="{% url 'category_detail' item.name %}" {% if category == item %}class="active"{% endif %}>{{ item.name }}</a>
         {% endfor %}
       </div>
       <div class="navbar__auth">
-        <a href="post_form.html" class="btn btn--primary btn--sm">+ New Post</a>
+        {% comment %} <a href="post_form.html" class="btn btn--primary btn--sm">+ New Post</a> {% endcomment %}
         <a href="login.html" class="btn btn--ghost btn--sm">Sign out</a>
       </div>
     </div>
@@ -31,94 +31,41 @@
     <!-- Category hero -->
     <div class="category-hero">
       <p class="category-hero__tag">Category</p>
-      <h1 class="category-hero__name"><span>Technology</span></h1>
-      <p class="category-hero__desc">Deep dives into software, infrastructure, and the tools shaping how we build.</p>
-      <p class="category-hero__count"><strong>12</strong> posts in this category</p>
+      <h1 class="category-hero__name"><span>{{ category.name }}</span></h1>
+      <p class="category-hero__desc">{{ category.description }}</p>
+      <p class="category-hero__count"><strong>{{ category.post_set.count }}</strong> posts in this category</p>
     </div>
 
     <!-- Browse other categories -->
     <div class="category-bar" style="margin-bottom:48px;">
       <span class="category-bar__label">Also</span>
-      <a href="post_list.html" class="category-bar__link">All posts</a>
-      <a href="category_detail.html" class="category-bar__link">Design</a>
-      <a href="category_detail.html" class="category-bar__link">Business</a>
-      <a href="category_detail.html" class="category-bar__link">Lifestyle</a>
+      <a href="{% url 'home' %}" class="category-bar__link">All posts</a>
+      {% for item in categories %}
+        <a href="{% url 'category_detail' item.name %}" class="category-bar__link">{{ item.name }}</a>
+      {% endfor %}
     </div>
 
     <!-- Posts in this category -->
     <div class="post-grid">
 
+      {% for article in category_post %}
       <article class="post-card">
-        <a href="post_detail.html" class="post-card__image">
-          <img src="https://picsum.photos/seed/post1/800/450" alt="Post cover" loading="lazy" />
+        <a href="{% url 'post_detail' article.pk %}" class="post-card__image">
+          <img src="{{ article.image.url }}" alt="Post cover" loading="lazy" />
         </a>
         <div class="post-card__body">
           <div class="post-card__meta">
-            <span class="category-pill">Technology</span>
-            <span class="post-card__date">Jun 10, 2026</span>
+            <a href="{% url 'category_detail' article.category.name %}" class="category-pill">{{ article.category.name }}  </a>
+            <span class="post-card__date">{{ article.date_posted }}</span>
           </div>
-          <a href="post_detail.html">
-            <h2 class="post-card__title">Why every junior developer should learn system design before frameworks</h2>
+          <a href="{% url 'post_detail' article.pk %}">
+            <h2 class="post-card__title">{{ article.title }}</h2>
           </a>
-          <p class="post-card__excerpt">
-            Most beginners jump straight into React or Django without understanding the foundations. Here's why that's backwards, and what to do instead.
-          </p>
-        </div>
-        <div class="post-card__footer">
-          <div class="post-card__author">
-            <div class="post-card__author-avatar">I</div>
-            <span>Ikedi</span>
-          </div>
         </div>
       </article>
+      {% endfor %}
 
-      <article class="post-card">
-        <a href="post_detail.html" class="post-card__image">
-          <img src="https://picsum.photos/seed/post4/800/450" alt="Post cover" loading="lazy" />
-        </a>
-        <div class="post-card__body">
-          <div class="post-card__meta">
-            <span class="category-pill">Technology</span>
-            <span class="post-card__date">May 28, 2026</span>
-          </div>
-          <a href="post_detail.html">
-            <h2 class="post-card__title">PostgreSQL vs MySQL: a practical comparison for Django projects</h2>
-          </a>
-          <p class="post-card__excerpt">
-            Both are solid. But once you deal with complex queries and production scale, the differences matter more than any tutorial suggests.
-          </p>
-        </div>
-        <div class="post-card__footer">
-          <div class="post-card__author">
-            <div class="post-card__author-avatar">I</div>
-            <span>Ikedi</span>
-          </div>
-        </div>
-      </article>
-
-      <article class="post-card">
-        <a href="post_detail.html" class="post-card__image">
-          <div class="post-card__image--placeholder">✦</div>
-        </a>
-        <div class="post-card__body">
-          <div class="post-card__meta">
-            <span class="category-pill">Technology</span>
-            <span class="post-card__date">May 15, 2026</span>
-          </div>
-          <a href="post_detail.html">
-            <h2 class="post-card__title">REST vs GraphQL: picking the right API style for your project</h2>
-          </a>
-          <p class="post-card__excerpt">
-            GraphQL gets a lot of hype. REST gets a lot of abuse. Here's a grounded comparison that helps you actually choose instead of following trends.
-          </p>
-        </div>
-        <div class="post-card__footer">
-          <div class="post-card__author">
-            <div class="post-card__author-avatar">A</div>
-            <span>Ada</span>
-          </div>
-        </div>
-      </article>
+    
 
     </div>
 

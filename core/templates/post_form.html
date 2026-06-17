@@ -1,10 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>New Post · ink.</title>
-  <link rel="stylesheet" href="blog.css" />
+  <link rel="stylesheet" href="{% static 'css/blog.css' %}" />
 </head>
 <body>
 
@@ -12,10 +13,10 @@
     <div class="navbar__inner">
       <a href="post_list.html" class="navbar__brand">ink<span>.</span></a>
       <div class="navbar__links">
-        <a href="post_list.html">Home</a>
-        <a href="category_detail.html">Technology</a>
-        <a href="category_detail.html">Design</a>
-        <a href="category_detail.html">Business</a>
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'category_detail' 1 %}">{{ categories.0.name }}</a>
+        <a href="{% url 'category_detail' 2 %}">{{ categories.1.name }}</a>
+        <a href="{% url 'category_detail' 3 %}">{{ categories.2.name }}</a>
       </div>
       <div class="navbar__auth">
         <a href="login.html" class="btn btn--ghost btn--sm">Sign out</a>

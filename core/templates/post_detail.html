@@ -1,10 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Why every junior developer should learn system design · ink.</title>
-  <link rel="stylesheet" href="blog.css" />
+  <link rel="stylesheet" href="{% static 'css/blog.css' %}" />
 </head>
 <body>
 
@@ -13,15 +14,15 @@
 
   <nav class="navbar">
     <div class="navbar__inner">
-      <a href="post_list.html" class="navbar__brand">ink<span>.</span></a>
+      <a href="{% url 'home' %}" class="navbar__brand">ink<span>.</span></a>
       <div class="navbar__links">
-        <a href="post_list.html">Home</a>
-        <a href="category_detail.html">Technology</a>
-        <a href="category_detail.html">Design</a>
-        <a href="category_detail.html">Business</a>
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'category_detail' 1 %}">Technology</a>
+        <a href="{% url 'category_detail' 2 %}">Design</a>
+        <a href="{% url 'category_detail' 3 %}">Business</a>
       </div>
       <div class="navbar__auth">
-        <a href="post_form.html" class="btn btn--primary btn--sm">+ New Post</a>
+        <a href="{% url 'post_form' %}" class="btn btn--primary btn--sm">+ New Post</a>
         <a href="login.html" class="btn btn--ghost btn--sm">Sign out</a>
       </div>
     </div>
@@ -33,7 +34,7 @@
       <div class="post-detail__header">
 
         <div class="post-detail__meta">
-          <a href="category_detail.html" class="category-pill">Technology</a>
+          <a href="{% url 'category_detail' 1 %}" class="category-pill">Technology</a>
           <span class="post-detail__date">June 10, 2026</span>
           <span class="post-detail__read-time">1,240 words</span>
         </div>
@@ -102,10 +103,10 @@
 
       <!-- Author actions (shown only to post owner) -->
       <div class="post-detail__actions">
-        <a href="post_form.html" class="btn btn--ghost">Edit post</a>
+        <a href="{% url 'post_form' article.pk %}" class="btn btn--ghost">Edit post</a>
         <button class="btn btn--danger" onclick="return confirm('Delete this post?')">Delete</button>
         <span style="flex:1"></span>
-        <a href="post_list.html" class="btn btn--ghost btn--sm">← All posts</a>
+        <a href="{% url 'post_list' %}" class="btn btn--ghost btn--sm">← All posts</a>
       </div>
 
     </div>
