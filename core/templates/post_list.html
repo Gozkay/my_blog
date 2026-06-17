@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home · ink.</title>
+  <link rel="stylesheet" href="{% static 'blog.css' %}" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="navbar__inner">
+      <a href="post_list.html" class="navbar__brand">ink<span>.</span></a>
+      <div class="navbar__links">
+        <a href="post_list.html" class="active">Home</a>
+        {% for category in categories %}
+          <a href="category_detail.html">{{ category.name }}</a>
+        {% endfor %}
+      </div>
+      <div class="navbar__auth">
+        <a href="post_form.html" class="btn btn--primary btn--sm">+ New Post</a>
+        <a href="login.html" class="btn btn--ghost btn--sm">Sign out</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+
+    <div class="page-header">
+      <p class="page-header__eyebrow">Welcome to ink.</p>
+      <h1 class="page-header__title">Ideas worth <em>reading.</em></h1>
+      <p class="page-header__sub">Stories, tutorials, and thoughts from writers who actually know their stuff.</p>
+    </div>
+
+    <!-- Category filter bar -->
+    <div class="category-bar">
+      <span class="category-bar__label">Filter</span>
+      <a href="post_list.html" class="category-bar__link active">All</a>
+      {% for category in categories %}
+        <a href="category_detail.html" class="category-bar__link">{{ category.name }}</a>
+      {% endfor %}
+      
+
+    <!-- Post grid -->
+    <div class="post-grid">
+
+      <!-- Featured post (spans 2 cols) -->
+      {% for article in articles %}
+      <article class="post-card">
+        <a href="post_detail.html" class="post-card__image">
+          <img src="{{ article.image.url }}" alt="Post cover" loading="lazy" />
+        </a>
+        <div class="post-card__body">
+          <div class="post-card__meta">
+            <a href="category_detail.html" class="category-pill">{{ article.category.name }}  </a>
+            <span class="post-card__date">{{ article.date_posted }}</span>
+          </div>
+          <a href="post_detail.html">
+            <h2 class="post-card__title">{{ article.title }}</h2>
+          </a>
+          <p class="post-card__excerpt">
+            {{ article.body }}
+          </p>
+        </div>
+        <div class="post-card__footer">
+          <div class="post-card__author">
+            <div class="post-card__author-avatar">I</div>
+            <span>{{ article.author }}</span>
+          </div>
+          <span style="font-size:0.75rem; color:var(--muted);">1,240 words</span>
+        </div>
+      </article>
+      {% endfor %}
+
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination">
+      <span class="pagination__link pagination__link--disabled">←</span>
+      <span class="pagination__link active">1</span>
+      <a href="#" class="pagination__link">2</a>
+      <a href="#" class="pagination__link">3</a>
+      <a href="#" class="pagination__link">→</a>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <span class="footer__brand">ink<span>.</span></span>
+      <span class="footer__copy">&copy; 2026 · Built with Django</span>
+    </div>
+  </footer>
+
+</body>
+</html>

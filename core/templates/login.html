@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign in · ink.</title>
+  <link rel="stylesheet" href="blog.css" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="navbar__inner">
+      <a href="post_list.html" class="navbar__brand">ink<span>.</span></a>
+      <div class="navbar__links">
+        <a href="post_list.html">Home</a>
+      </div>
+      <div class="navbar__auth">
+        <a href="register.html" class="btn btn--primary btn--sm">Register</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="form-page">
+    <div class="form-card">
+
+      <div class="form-card__header">
+        <p class="form-card__eyebrow">Welcome back</p>
+        <h1 class="form-card__title">Sign in to ink<span style="color:var(--accent)">.</span></h1>
+        <p class="form-card__sub">Don't have an account? <a href="register.html">Register here →</a></p>
+      </div>
+
+      <form action="#" method="POST">
+
+        <div class="form-group">
+          <label class="form-label" for="username">Username</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            class="form-input"
+            placeholder="your_username"
+            autofocus
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            class="form-input"
+            placeholder="••••••••"
+          />
+        </div>
+
+        <button type="submit" class="btn btn--primary btn--full" style="margin-top:8px;">
+          Sign in
+        </button>
+
+      </form>
+
+      <div class="form-divider">or</div>
+
+      <a href="register.html" class="btn btn--ghost btn--full">Create an account</a>
+
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <span class="footer__brand">ink<span>.</span></span>
+      <span class="footer__copy">&copy; 2026 · Built with Django</span>
+    </div>
+  </footer>
+
+</body>
+</html>

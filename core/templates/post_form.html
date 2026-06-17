@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>New Post · ink.</title>
+  <link rel="stylesheet" href="blog.css" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="navbar__inner">
+      <a href="post_list.html" class="navbar__brand">ink<span>.</span></a>
+      <div class="navbar__links">
+        <a href="post_list.html">Home</a>
+        <a href="category_detail.html">Technology</a>
+        <a href="category_detail.html">Design</a>
+        <a href="category_detail.html">Business</a>
+      </div>
+      <div class="navbar__auth">
+        <a href="login.html" class="btn btn--ghost btn--sm">Sign out</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="form-page">
+    <div class="form-card form-card--wide">
+
+      <div class="form-card__header">
+        <!-- Change eyebrow + title to "Editing" / "Update your post" when editing -->
+        <p class="form-card__eyebrow">New post</p>
+        <h1 class="form-card__title">Write something new</h1>
+        <p class="form-card__sub">Fill in the details below. Your post will be live immediately.</p>
+      </div>
+
+      <form action="#" method="POST" enctype="multipart/form-data">
+
+        <!-- Title -->
+        <div class="form-group">
+          <label class="form-label" for="title">Post title *</label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            class="form-input"
+            placeholder="Give your post a clear, compelling title"
+          />
+        </div>
+
+        <!-- Category (FK — populated from your Category model) -->
+        <div class="form-group">
+          <label class="form-label" for="category">Category *</label>
+          <select id="category" name="category" class="form-select">
+            <option value="" disabled selected>Select a category…</option>
+            <option value="1">Technology</option>
+            <option value="2">Design</option>
+            <option value="3">Business</option>
+            <option value="4">Lifestyle</option>
+          </select>
+        </div>
+
+        <!-- Cover image -->
+        <div class="form-group">
+          <label class="form-label" for="cover_image">Cover image</label>
+          <input
+            type="file"
+            id="cover_image"
+            name="cover_image"
+            class="form-input"
+            accept="image/*"
+            style="padding: 7px 14px;"
+          />
+        </div>
+
+        <!-- Content -->
+        <div class="form-group">
+          <label class="form-label" for="content">Content *</label>
+          <textarea
+            id="content"
+            name="content"
+            class="form-textarea"
+            rows="14"
+            placeholder="Start writing…"
+          ></textarea>
+        </div>
+
+        <div style="display:flex; gap:12px; align-items:center; margin-top:8px;">
+          <button type="submit" class="btn btn--primary">Publish post</button>
+          <a href="post_list.html" class="btn btn--ghost">Cancel</a>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <span class="footer__brand">ink<span>.</span></span>
+      <span class="footer__copy">&copy; 2026 · Built with Django</span>
+    </div>
+  </footer>
+
+</body>
+</html>

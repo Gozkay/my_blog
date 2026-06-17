@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Why every junior developer should learn system design · ink.</title>
+  <link rel="stylesheet" href="blog.css" />
+</head>
+<body>
+
+  <!-- Reading progress bar -->
+  <div class="read-progress" id="readProgress"></div>
+
+  <nav class="navbar">
+    <div class="navbar__inner">
+      <a href="post_list.html" class="navbar__brand">ink<span>.</span></a>
+      <div class="navbar__links">
+        <a href="post_list.html">Home</a>
+        <a href="category_detail.html">Technology</a>
+        <a href="category_detail.html">Design</a>
+        <a href="category_detail.html">Business</a>
+      </div>
+      <div class="navbar__auth">
+        <a href="post_form.html" class="btn btn--primary btn--sm">+ New Post</a>
+        <a href="login.html" class="btn btn--ghost btn--sm">Sign out</a>
+      </div>
+    </div>
+  </nav>
+
+  <article>
+
+    <div class="container--read">
+      <div class="post-detail__header">
+
+        <div class="post-detail__meta">
+          <a href="category_detail.html" class="category-pill">Technology</a>
+          <span class="post-detail__date">June 10, 2026</span>
+          <span class="post-detail__read-time">1,240 words</span>
+        </div>
+
+        <h1 class="post-detail__title">Why every junior developer should learn system design before frameworks</h1>
+
+        <div class="post-detail__author-bar">
+          <div class="author-avatar">I</div>
+          <div class="author-info">
+            <p class="author-info__name">Ikedi</p>
+            <p class="author-info__meta">ikedi@grotec.dev</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Cover image -->
+    <div class="container">
+      <div class="post-detail__cover">
+        <img src="https://picsum.photos/seed/post1/1200/500" alt="Post cover" />
+      </div>
+    </div>
+
+    <!-- Post body -->
+    <div class="container--read" id="postBody">
+      <div class="post-detail__body">
+
+        <p>
+          Most beginner tutorials start with the same sequence: install the framework, create a model, render a view, ship. It works — until it doesn't. And by the time you realize the foundation is weak, you've already built three projects on top of it.
+        </p>
+
+        <h2>The framework trap</h2>
+        <p>
+          Frameworks are productivity tools. They make good decisions fast — routing, ORM, templating, auth. But every decision they make for you is one you don't understand. That's fine when things work. It becomes a problem when they don't.
+        </p>
+        <p>
+          A developer who understands system design doesn't panic when the ORM produces a slow query. They know what the query is doing, why it's slow, and how to fix it. A developer who only knows the framework opens Stack Overflow and hopes.
+        </p>
+
+        <h2>What system design actually means at your level</h2>
+        <p>
+          You don't need to know how to design Twitter from scratch on day one. System design at the junior level means understanding a few core ideas:
+        </p>
+        <ul>
+          <li>How data flows from a browser to a database and back</li>
+          <li>What HTTP is actually doing under the hood</li>
+          <li>Why databases have indexes and when to use them</li>
+          <li>The difference between synchronous and asynchronous processing</li>
+          <li>What a cache is for and when it helps vs. hides a real problem</li>
+        </ul>
+
+        <blockquote>
+          "The best code is code you understand well enough to delete."
+        </blockquote>
+
+        <h2>A practical path forward</h2>
+        <p>
+          Spend two weeks before your next framework project doing nothing but reading. Read how HTTP works. Build a tiny server from scratch using only the standard library in Python or Node — no Express, no Django. Handle a GET request. Parse a query string. Return HTML. It will take longer than you think and teach you more than any tutorial.
+        </p>
+        <p>
+          Then pick your framework. It will feel different. You'll see what it's doing for you instead of treating it like magic.
+        </p>
+
+      </div>
+
+      <!-- Author actions (shown only to post owner) -->
+      <div class="post-detail__actions">
+        <a href="post_form.html" class="btn btn--ghost">Edit post</a>
+        <button class="btn btn--danger" onclick="return confirm('Delete this post?')">Delete</button>
+        <span style="flex:1"></span>
+        <a href="post_list.html" class="btn btn--ghost btn--sm">← All posts</a>
+      </div>
+
+    </div>
+
+  </article>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <span class="footer__brand">ink<span>.</span></span>
+      <span class="footer__copy">&copy; 2026 · Built with Django</span>
+    </div>
+  </footer>
+
+  <script>
+    const bar = document.getElementById('readProgress');
+    const body = document.getElementById('postBody');
+    window.addEventListener('scroll', () => {
+      const rect = body.getBoundingClientRect();
+      const pct = Math.min(Math.max((-rect.top / body.offsetHeight) * 100, 0), 100);
+      bar.style.width = pct + '%';
+    });
+  </script>
+
+</body>
+</html>
