@@ -1,5 +1,6 @@
-from django.shortcuts import redirect, render
-from core.models import Article, Category, Comment
+from django.shortcuts import redirect, render, get_object_or_404
+from django.contrib.auth import authenticate, login, logout
+from core.models import Article, Category, Comment, User
 
 
 # Create your views here.
@@ -30,8 +31,8 @@ def category(request,name):
     }
 
     return render(request, 'category_detail.html', context)
-def post_detail(request, pk):
-    article = Article.objects.get(pk=pk)
+def post(request, slug):
+    article = get_object_or_404(Article, slug=slug)
     categories = Category.objects.all()
     comments = Comment.objects.filter(article=article)
 
@@ -40,10 +41,11 @@ def post_detail(request, pk):
         'categories': categories,
         'comments': comments
     }
+    
 
     return render(request, 'post_detail.html', context)
-def add_comment(request, article_id):
-    article = Article.objects.get(id=article_id)
+def add_comment(request, slug):
+    article = Article.objects.get(slug=slug)
     if request.method == 'POST':
         body = request.POST.get('body')
         comment = Comment.objects.create(user=request.user, article=article, body=body)
